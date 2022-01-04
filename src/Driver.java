@@ -2,7 +2,8 @@
 public class Driver {
 
 	public static void main(String[] args) {
-		System.out.println("Hello, world!");
+		Tile t = new Tile();
+		Player p = new Player();
 	}
 
 }
