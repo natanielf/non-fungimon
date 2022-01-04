@@ -48,20 +48,16 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		// key codes: 38 = up, 39 = right, 40 = down, 37 = left
 		switch (e.getKeyCode()) {
 		case 38:
-			System.out.println("up");
-			p.move(0);
+			p.up();
 			break;
 		case 39:
-			System.out.println("right");
-			p.move(1);
+			p.right();
 			break;
 		case 40:
-			System.out.println("down");
-			p.move(2);
+			p.down();
 			break;
 		case 37:
-			System.out.println("left");
-			p.move(3);
+			p.left();
 			break;
 		case 17:
 			ctrlKeyPressed = true;

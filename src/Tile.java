@@ -15,5 +15,13 @@ public class Tile {
 			}
 		}
 	}
-
+	
+	public int getWidth() {
+		return board[0].length;
+	}
+	
+	public int getHeight() {
+		return board.length;
+	}
+	
 }

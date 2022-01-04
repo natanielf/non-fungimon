@@ -18,22 +18,28 @@ public class Player {
 		this.myItems = myItems;
 	}
 
-	public void move(int dir) {
-		// 0 = up, 1 = right, 2 = down, 3 = left
-		if (dir == 0) {
-			if (y > 0)
-				y--;
-		} else if (dir == 1) {
-			if (x < 30)
-				x++;
-		} else if (dir == 2) {
-			if (y < 20)
-				y++;
-		} else if (dir == 3) {
-			if (x > 0)
-				x--;
-		}
-		updateLocation();
+	public void up() {
+		if (y > 0)
+			y--;
+		System.out.println(" X:Y - " + x + ":" + y);
+	}
+	
+	public void right() {
+		if (x < 30)
+			x++;
+		System.out.println(" X:Y - " + x + ":" + y);
+	}
+	
+	public void down() {
+		if (y < 20)
+			y++;
+		System.out.println(" X:Y - " + x + ":" + y);
+	}
+	
+	public void left() {
+		if (x > 0)
+			x--;
+		System.out.println(" X:Y - " + x + ":" + y);
 	}
 	
 	public void updateLocation() {
