@@ -7,14 +7,15 @@ public class Player {
 	private int x, y; // location on the grid
 
 	public Player() {
-		this.myNFTs = new NFT[10];
-		this.myItems = new Item[5];
+		this.myNFTs = new NFT[5];
+		this.myItems = new Item[10];
 		x = 0;
 		y = 0;
 	}
 
 	public Player(NFT[] myNFTs, Item[] myItems) {
 		this.myNFTs = myNFTs;
+		this.myNFTs[0] = new NFT();
 		this.myItems = myItems;
 	}
 

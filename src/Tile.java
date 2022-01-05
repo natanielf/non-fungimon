@@ -24,4 +24,7 @@ public class Tile {
 		return board.length;
 	}
 	
+	public int getType(int r, int c) {
+		return board[r][c];
+	}
 }

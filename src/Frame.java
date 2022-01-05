@@ -21,6 +21,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		paintGrid(g);
 	}
 
 	public Frame() {
@@ -41,6 +42,24 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	public static void main(String[] arg) {
 		Frame frame = new Frame();
+	}
+	
+	public void paintGrid(Graphics g) {
+		int tileSize = 25;
+		int tileSpacer = tileSize + 5;
+		for (int r = 0; r < b.getHeight(); r++) {
+			for (int c = 0; c < b.getWidth(); c++) {
+				switch (b.getType(r, c)) {
+				case 0:
+					g.setColor(Color.black);
+					break;
+				case 1:
+					g.setColor(Color.green);
+					break;
+				}
+				g.fillRect(r * tileSpacer, c * tileSpacer, tileSize, tileSize);
+			}
+		}
 	}
 
 	@Override
