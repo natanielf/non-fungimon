@@ -1,3 +1,9 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 
 public class NFT {
@@ -5,10 +11,11 @@ public class NFT {
 	private String name;
 	private int rarity, level, health;
 	private boolean evo, isPoisoned, isStunned;
-	private ImageIcon img;
+	private Image img;
+	private int x, y;
 
 	public NFT(String name, int rarity, int level, int health, boolean evo, boolean isPoisoned, boolean isStunned,
-			ImageIcon img) {
+			Image img, int x, int y) {
 		this.name = name;
 		this.rarity = rarity;
 		this.level = level;
@@ -17,6 +24,8 @@ public class NFT {
 		this.isPoisoned = isPoisoned;
 		this.isStunned = isStunned;
 		this.img = img;
+		this.x = x;
+		this.y = y;
 	}
 
 	// default NFT that every player starts with
@@ -28,7 +37,9 @@ public class NFT {
 		this.evo = false;
 		this.isPoisoned = false;
 		this.isStunned = false;
-		this.img = new ImageIcon("img/duck1.png");
+		this.img = getImage("/img/duck1.png");
+		this.x = 0;
+		this.y = 0;
 	}
 
 	public String getName() {
@@ -87,12 +98,44 @@ public class NFT {
 		this.isStunned = isStunned;
 	}
 
-	public ImageIcon getImg() {
+	public Image getImg() {
 		return img;
 	}
 
-	public void setImg(ImageIcon img) {
+	public void setImg(Image img) {
 		this.img = img;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	private Image getImage(String path) {
+		Image tempImage = null;
+		try {
+			URL imageURL = NFT.class.getResource(path);
+			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tempImage;
+	}
+
+	public void paint(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		g2.drawImage(img, x, y, null);
 	}
 
 }

@@ -12,8 +12,11 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements KeyListener, ActionListener {
 
-	Tile b;
+	private Map m;
 	Player p;
+	int tileSize, tileSpacer;
+	int walkX = 0;
+	int walkY = 0;
 
 	boolean ctrlKeyPressed;
 	JFrame f;
@@ -22,6 +25,8 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		paintGrid(g);
+		paintPlayer(g);
+		paintNFT(g);
 	}
 
 	public Frame() {
@@ -35,21 +40,21 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		f.setVisible(true);
 
 		ctrlKeyPressed = false;
-
-		b = new Tile();
 		p = new Player();
+		tileSize = 35;
+		tileSpacer = 1;
+
+		m = new Map();
 	}
 
 	public static void main(String[] arg) {
 		Frame frame = new Frame();
 	}
-	
+
 	public void paintGrid(Graphics g) {
-		int tileSize = 25;
-		int tileSpacer = tileSize + 5;
-		for (int r = 0; r < b.getHeight(); r++) {
-			for (int c = 0; c < b.getWidth(); c++) {
-				switch (b.getType(r, c)) {
+		for (int r = 0; r < m.getMap().length; r++) {
+			for (int c = 0; c < m.getMap()[0].length; c++) {
+				switch (m.getMap()[r][c].getType()) {
 				case 0:
 					g.setColor(Color.black);
 					break;
@@ -57,9 +62,26 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 					g.setColor(Color.green);
 					break;
 				}
-				g.fillRect(r * tileSpacer, c * tileSpacer, tileSize, tileSize);
+				g.fillRect(r * (tileSize + tileSpacer), c * (tileSize + tileSpacer), tileSize, tileSize);
 			}
 		}
+	}
+
+	public void paintPlayer(Graphics g) {
+		p.setX(p.getX() + walkX);
+		p.setY(p.getY() + walkY);
+		int playerX = p.getX() * (tileSize + tileSpacer) + tileSpacer;
+		int playerY = p.getY() * (tileSize + tileSpacer) + tileSpacer;
+		g.setColor(Color.pink);
+		g.fillOval(playerX, playerY, tileSize - 5, tileSize - 5);
+	}
+
+	public void paintNFT(Graphics g) {
+		NFT myNFT = p.getMyNFTs()[0];
+		myNFT.setX(p.getX() * (tileSize + tileSpacer) + tileSpacer);
+		myNFT.setY(p.getY() * (tileSize + tileSpacer) + tileSpacer);
+		;
+		myNFT.paint(g);
 	}
 
 	@Override
@@ -70,10 +92,10 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 			p.up();
 			break;
 		case 39:
-			p.right();
+			p.right(m.getMap().length - 1);
 			break;
 		case 40:
-			p.down();
+			p.down(m.getMap()[0].length - 1);
 			break;
 		case 37:
 			p.left();
