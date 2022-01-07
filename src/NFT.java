@@ -4,8 +4,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 
-import javax.swing.ImageIcon;
-
 public class NFT {
 
 	private String name;

@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -80,7 +79,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		NFT myNFT = p.getMyNFTs()[0];
 		myNFT.setX(p.getX() * (tileSize + tileSpacer) + tileSpacer);
 		myNFT.setY(p.getY() * (tileSize + tileSpacer) + tileSpacer);
-		;
 		myNFT.paint(g);
 	}
 
