@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -13,14 +14,14 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	private Map m;
-	Player p;
-	int tileSize, tileSpacer;
-	int walkX = 0;
-	int walkY = 0;
+	private Player p;
+	private int tileSize, tileSpacer;
+	private int walkX = 0;
+	private int walkY = 0;
 
-	boolean ctrlKeyPressed;
-	JFrame f;
-	Timer t;
+	private boolean ctrlKeyPressed;
+	private JFrame f;
+	private Timer t;
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -32,7 +33,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	public Frame() {
 		f = new JFrame("Non-Fungimon");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		f.setExtendedState(JFrame.MAXIMIZED_BOTH); // maximize window
 		f.add(this);
 		f.addKeyListener(this);
 		t = new Timer(16, this);
@@ -43,7 +44,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		p = new Player();
 		tileSize = 35;
 		tileSpacer = 1;
-
 		m = new Map();
 	}
 
@@ -121,7 +121,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
 	}
 
 	@Override
