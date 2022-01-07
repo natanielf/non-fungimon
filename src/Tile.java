@@ -1,6 +1,7 @@
 public class Tile {
 
-	private int type; // 0 = ground, 1 = grass
+	// 0 = ground, 1 = moss, 2 = grass, 3 = rock
+	private int type;
 	private double chance;
 
 	public Tile() {

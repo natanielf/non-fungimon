@@ -13,32 +13,28 @@ public class Player {
 		y = 0;
 	}
 
-	public void up() {
-		if (y > 0)
+	public void up(Map m) {
+		if (y > 0 && m.getMap()[this.x][this.y - 1].getType() < 3)
 			y--;
-		System.out.println(" X:Y - " + x + ":" + y);
 	}
 
-	public void right(int max) {
-		if (x < max)
+	public void right(int max, Map m) {
+		if (x < max && m.getMap()[this.x + 1][this.y].getType() < 3)
 			x++;
-		System.out.println(" X:Y - " + x + ":" + y);
 	}
 
-	public void down(int max) {
-		if (y < max)
+	public void down(int max, Map m) {
+		if (y < max && m.getMap()[this.x][this.y + 1].getType() < 3)
 			y++;
-		System.out.println(" X:Y - " + x + ":" + y);
 	}
 
-	public void left() {
-		if (x > 0)
+	public void left(Map m) {
+		if (x > 0 && m.getMap()[this.x - 1][this.y].getType() < 3)
 			x--;
-		System.out.println(" X:Y - " + x + ":" + y);
 	}
 
-	public void updateLocation() {
-
+	public void printLocation() {
+		System.out.println(" X:Y - " + x + ":" + y);
 	}
 
 	public NFT[] getMyNFTs() {

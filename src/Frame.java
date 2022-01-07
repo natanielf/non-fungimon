@@ -30,20 +30,20 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	}
 
 	public Frame() {
+		ctrlKeyPressed = false;
+		p = new Player();
+		m = new Map();
+		tileSize = m.getSize();
+		tileSpacer = m.getSpacer();
+		
 		f = new JFrame("Non-Fungimon");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setExtendedState(JFrame.MAXIMIZED_BOTH); // maximize window
+		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		f.add(this);
 		f.addKeyListener(this);
 		t = new Timer(16, this);
 		t.start();
 		f.setVisible(true);
-
-		ctrlKeyPressed = false;
-		p = new Player();
-		tileSize = 35;
-		tileSpacer = 1;
-		m = new Map();
 	}
 
 	public static void main(String[] arg) {
@@ -53,13 +53,20 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	public void paintGrid(Graphics g) {
 		for (int r = 0; r < m.getMap().length; r++) {
 			for (int c = 0; c < m.getMap()[0].length; c++) {
+				// set color based on tile type
+				// 0 = ground, 1 = moss, 2 = grass, 3 = rock
 				switch (m.getMap()[r][c].getType()) {
 				case 0:
-					g.setColor(Color.black);
+					g.setColor(new Color(20, 20, 20));
 					break;
 				case 1:
-					g.setColor(Color.green);
+					g.setColor(new Color(120, 150, 100));
 					break;
+				case 2:
+					g.setColor(new Color(86, 125, 70));
+					break;
+				case 3:
+					g.setColor(new Color(70, 70, 70));
 				}
 				g.fillRect(r * (tileSize + tileSpacer), c * (tileSize + tileSpacer), tileSize, tileSize);
 			}
@@ -79,6 +86,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		NFT myNFT = p.getMyNFTs()[0];
 		myNFT.setX(p.getX() * (tileSize + tileSpacer) + tileSpacer);
 		myNFT.setY(p.getY() * (tileSize + tileSpacer) + tileSpacer);
+		;
 		myNFT.paint(g);
 	}
 
@@ -87,16 +95,16 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		// key codes: 38 = up, 39 = right, 40 = down, 37 = left
 		switch (e.getKeyCode()) {
 		case 38:
-			p.up();
+			p.up(m);
 			break;
 		case 39:
-			p.right(m.getMap().length - 1);
+			p.right(m.getMap().length - 1, m);
 			break;
 		case 40:
-			p.down(m.getMap()[0].length - 1);
+			p.down(m.getMap()[0].length - 1, m);
 			break;
 		case 37:
-			p.left();
+			p.left(m);
 			break;
 		case 17:
 			ctrlKeyPressed = true;
@@ -119,6 +127,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+
 	}
 
 	@Override
