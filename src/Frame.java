@@ -24,7 +24,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
-		paintGrid(g);
+		paintMap(g);
 		paintPlayer(g);
 		paintNFT(g);
 	}
@@ -35,7 +35,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		m = new Map();
 		tileSize = m.getSize();
 		tileSpacer = m.getSpacer();
-		
+
 		f = new JFrame("Non-Fungimon");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -50,14 +50,14 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		Frame frame = new Frame();
 	}
 
-	public void paintGrid(Graphics g) {
+	public void paintMap(Graphics g) {
 		for (int r = 0; r < m.getMap().length; r++) {
 			for (int c = 0; c < m.getMap()[0].length; c++) {
 				// set color based on tile type
 				// 0 = ground, 1 = moss, 2 = grass, 3 = rock
 				switch (m.getMap()[r][c].getType()) {
 				case 0:
-					g.setColor(new Color(20, 20, 20));
+					g.setColor(new Color(200, 200, 100));
 					break;
 				case 1:
 					g.setColor(new Color(120, 150, 100));
@@ -66,7 +66,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 					g.setColor(new Color(86, 125, 70));
 					break;
 				case 3:
-					g.setColor(new Color(70, 70, 70));
+					g.setColor(new Color(30, 30, 30));
 				}
 				g.fillRect(r * (tileSize + tileSpacer), c * (tileSize + tileSpacer), tileSize, tileSize);
 			}
@@ -86,7 +86,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		NFT myNFT = p.getMyNFTs()[0];
 		myNFT.setX(p.getX() * (tileSize + tileSpacer) + tileSpacer);
 		myNFT.setY(p.getY() * (tileSize + tileSpacer) + tileSpacer);
-		;
 		myNFT.paint(g);
 	}
 
@@ -127,7 +126,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
 	}
 
 	@Override

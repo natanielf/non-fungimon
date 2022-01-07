@@ -3,7 +3,7 @@ public class Player {
 	private NFT[] myNFTs;
 	private Item[] myItems;
 	private int x, y; // location on the grid
-	private int size;
+	private int size; // size of the player
 
 	public Player() {
 		this.myNFTs = new NFT[5];

@@ -13,7 +13,7 @@ public class Map {
 			}
 		}
 	}
-	
+
 	public Tile generateRandomTile() {
 		int type = (int) (Math.random() * 4);
 		double chance = 0.0;
@@ -27,11 +27,11 @@ public class Map {
 	public void setMap(Tile[][] arr2D) {
 		map = arr2D;
 	}
-	
+
 	public int getWidth() {
 		return map[0].length;
 	}
-	
+
 	public int getHeight() {
 		return map.length;
 	}
