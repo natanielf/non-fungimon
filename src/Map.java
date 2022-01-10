@@ -15,7 +15,19 @@ public class Map {
 	}
 
 	public Tile generateRandomTile() {
-		int type = (int) (Math.random() * 4);
+		int rand = (int) (Math.random() * 100);
+		int type;
+		// 0 = ground, 1 = moss, 2 = grass, 3 = rock, 4 = water
+		if (rand < 40)
+			type = 0;
+		else if (rand < 60)
+			type = 1;
+		else if (rand < 80)
+			type = 2;
+		else if (rand < 90)
+			type = 3;
+		else
+			type = 4;
 		double chance = 0.0;
 		return new Tile(type, chance);
 	}

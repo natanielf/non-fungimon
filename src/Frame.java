@@ -54,10 +54,10 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		for (int r = 0; r < m.getMap().length; r++) {
 			for (int c = 0; c < m.getMap()[0].length; c++) {
 				// set color based on tile type
-				// 0 = ground, 1 = moss, 2 = grass, 3 = rock
+				// 0 = ground, 1 = moss, 2 = grass, 3 = rock, 4 = water
 				switch (m.getMap()[r][c].getType()) {
 				case 0:
-					g.setColor(new Color(200, 200, 100));
+					g.setColor(new Color(80, 120, 60));
 					break;
 				case 1:
 					g.setColor(new Color(120, 150, 100));
@@ -67,6 +67,9 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 					break;
 				case 3:
 					g.setColor(new Color(30, 30, 30));
+					break;
+				case 4:
+					g.setColor(new Color(170, 220, 220));
 				}
 				g.fillRect(r * (tileSize + tileSpacer), c * (tileSize + tileSpacer), tileSize, tileSize);
 			}
