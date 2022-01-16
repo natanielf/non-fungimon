@@ -17,17 +17,20 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	private Map m;
 	private Player p;
 	private int tileSize, tileSpacer;
-	private String name;
+	private Panel panel;
 
 	private boolean ctrlKeyPressed;
 	private JFrame f;
 	private Timer t;
+	private ImageIcon icon;
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		paintBackground(g);
 		paintMap(g);
 		paintPlayer(g);
 		paintNFT(g);
+		panel.paint(g);
 	}
 
 	public Frame() {
@@ -35,7 +38,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		f.setMinimumSize(new Dimension(1280, 720));
-		ImageIcon icon = new ImageIcon(getClass().getResource("./img/duck1.png"));
+		icon = new ImageIcon(getClass().getResource("./img/duck1.png"));
 		f.setIconImage(icon.getImage());
 		f.add(this);
 		f.addKeyListener(this);
@@ -44,24 +47,31 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 		f.setVisible(true);
 
-		name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:");
+		String name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:");
 		if (name == null)
 			name = "Player 1";
-		System.out.println(name);
 
-		init();
+		init(name);
 	}
 
 	public static void main(String[] arg) {
 		Frame frame = new Frame();
 	}
 
-	public void init() {
+	public void init(String name) {
+		int frameWidth = (int) f.getSize().getWidth();
+		int frameHeight = (int) f.getSize().getHeight();
 		ctrlKeyPressed = false;
 		p = new Player();
-		m = new Map((int) f.getSize().getWidth(), (int) f.getSize().getHeight());
+		m = new Map(frameWidth, frameHeight);
 		tileSize = m.getSize();
 		tileSpacer = m.getSpacer();
+		panel = new Panel(name, frameWidth, frameHeight, m.getPixelWidth());
+	}
+
+	public void paintBackground(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(0, 0, (int) f.getSize().getWidth(), (int) f.getSize().getHeight());
 	}
 
 	public void paintMap(Graphics g) {
@@ -126,6 +136,8 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 			case 17:
 				ctrlKeyPressed = true;
 				break;
+			case 32:
+				panel.incrementProgress();
 		}
 	}
 

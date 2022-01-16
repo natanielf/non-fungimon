@@ -2,6 +2,7 @@ public class Map {
 
 	private Tile[][] map;
 	private int size, spacer;
+	private int pixelWidth, pixelHeight;
 
 	// default map for 1920x1080 screen
 	public Map() {
@@ -17,9 +18,9 @@ public class Map {
 
 	// map adjusts to frame size
 	public Map(int frameW, int frameH) {
-		int width = frameW / 44;
-		int height = frameH / 28;
-		size = Math.min(width, height) - 2;
+		int w = frameW / 44;
+		int h = frameH / 28;
+		size = Math.min(w, h) - 2;
 		spacer = 1;
 		map = new Tile[28][44];
 
@@ -41,15 +42,17 @@ public class Map {
 					case 0:
 						map[r][c] = new Tile();
 						break;
-					case 25:
+					case 22:
 						map[r][c] = new Tile();
 						break;
-					case 49:
+					case 43:
 						map[r][c] = new Tile();
 						break;
 				}
 			}
 		}
+		this.pixelWidth = (size + spacer) * map[0].length;
+		this.pixelHeight = (size + spacer) * map.length;
 	}
 
 	public Tile generateRandomTile() {
@@ -100,6 +103,22 @@ public class Map {
 
 	public void setSpacer(int spacer) {
 		this.spacer = spacer;
+	}
+
+	public int getPixelWidth() {
+		return pixelWidth;
+	}
+
+	public void setPixelWidth(int pixelWidth) {
+		this.pixelWidth = pixelWidth;
+	}
+
+	public int getPixelHeight() {
+		return pixelHeight;
+	}
+
+	public void setPixelHeight(int pixelHeight) {
+		this.pixelHeight = pixelHeight;
 	}
 
 }
