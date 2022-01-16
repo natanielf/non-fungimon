@@ -17,8 +17,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	private Map m;
 	private Player p;
 	private int tileSize, tileSpacer;
-	private int walkX = 0;
-	private int walkY = 0;
 
 	private boolean ctrlKeyPressed;
 	private JFrame f;
@@ -80,17 +78,15 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 					case 4:
 						g.setColor(new Color(170, 220, 220));
 				}
-				g.fillRect(r * (tileSize + tileSpacer), c * (tileSize + tileSpacer), tileSize, tileSize);
+				g.fillRect(c * (tileSize + tileSpacer), r * (tileSize + tileSpacer), tileSize, tileSize);
 			}
 		}
 	}
 
 	public void paintPlayer(Graphics g) {
-		p.setX(p.getX() + walkX);
-		p.setY(p.getY() + walkY);
 		int playerX = p.getX() * (tileSize + tileSpacer) + tileSpacer;
 		int playerY = p.getY() * (tileSize + tileSpacer) + tileSpacer;
-		g.setColor(Color.pink);
+		g.setColor(Color.orange);
 		g.fillOval(playerX, playerY, tileSize - 5, tileSize - 5);
 	}
 
@@ -112,10 +108,10 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 				p.up(m);
 				break;
 			case 39:
-				p.right(m.getMap().length - 1, m);
+				p.right(m.getMap()[0].length - 1, m);
 				break;
 			case 40:
-				p.down(m.getMap()[0].length - 1, m);
+				p.down(m.getMap().length - 1, m);
 				break;
 			case 37:
 				p.left(m);
@@ -128,7 +124,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// Quit with CTRL+Q activation
+		// quit with CTRL+Q activation
 		if (e.getKeyCode() == 17)
 			ctrlKeyPressed = false;
 

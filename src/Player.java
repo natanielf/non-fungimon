@@ -14,22 +14,22 @@ public class Player {
 	}
 
 	public void up(Map m) {
-		if (y > 0 && m.getMap()[this.x][this.y - 1].getType() < 3)
+		if (y > 0 && m.getMap()[this.y - 1][this.x].getType() < 3)
 			y--;
 	}
 
 	public void right(int max, Map m) {
-		if (x < max && m.getMap()[this.x + 1][this.y].getType() < 3)
+		if (x < max && m.getMap()[this.y][this.x + 1].getType() < 3)
 			x++;
 	}
 
 	public void down(int max, Map m) {
-		if (y < max && m.getMap()[this.x][this.y + 1].getType() < 3)
+		if (y < max && m.getMap()[this.y + 1][this.x].getType() < 3)
 			y++;
 	}
 
 	public void left(Map m) {
-		if (x > 0 && m.getMap()[this.x - 1][this.y].getType() < 3)
+		if (x > 0 && m.getMap()[this.y][this.x - 1].getType() < 3)
 			x--;
 	}
 

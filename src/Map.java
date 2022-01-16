@@ -7,7 +7,7 @@ public class Map {
 	public Map() {
 		size = 35;
 		spacer = 1;
-		map = new Tile[53][28];
+		map = new Tile[28][53];
 		for (int r = 0; r < map.length; r++) {
 			for (int c = 0; c < map[r].length; c++) {
 				map[r][c] = generateRandomTile();
@@ -21,10 +21,22 @@ public class Map {
 		int height = frameH / 28;
 		size = Math.min(width, height) - 2;
 		spacer = 1;
-		map = new Tile[50][28];
+		map = new Tile[28][50];
+
 		for (int r = 0; r < map.length; r++) {
 			for (int c = 0; c < map[r].length; c++) {
-				map[r][c] = generateRandomTile();
+				switch (r) {
+					case 0:
+						map[r][c] = new Tile();
+						break;
+					case 27:
+						map[r][c] = new Tile();
+						break;
+					default:
+						map[r][c] = generateRandomTile();
+						break;
+				}
+
 			}
 		}
 	}
