@@ -35,7 +35,7 @@ public class NFT {
 		this.evo = false;
 		this.isPoisoned = false;
 		this.isStunned = false;
-		this.img = getImage("/img/duck1.png");
+		this.img = getImage("./img/duck1.png");
 		this.x = 0;
 		this.y = 0;
 	}

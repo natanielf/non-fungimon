@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +8,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -17,6 +17,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	private Map m;
 	private Player p;
 	private int tileSize, tileSpacer;
+	private String name;
 
 	private boolean ctrlKeyPressed;
 	private JFrame f;
@@ -40,7 +41,13 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		f.addKeyListener(this);
 		t = new Timer(16, this);
 		t.start();
+
 		f.setVisible(true);
+
+		name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:");
+		if (name == null)
+			name = "Player 1";
+		System.out.println(name);
 
 		init();
 	}

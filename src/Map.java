@@ -17,14 +17,16 @@ public class Map {
 
 	// map adjusts to frame size
 	public Map(int frameW, int frameH) {
-		int width = frameW / 50;
+		int width = frameW / 44;
 		int height = frameH / 28;
 		size = Math.min(width, height) - 2;
 		spacer = 1;
-		map = new Tile[28][50];
+		map = new Tile[28][44];
 
 		for (int r = 0; r < map.length; r++) {
 			for (int c = 0; c < map[r].length; c++) {
+				map[r][c] = generateRandomTile();
+
 				switch (r) {
 					case 0:
 						map[r][c] = new Tile();
@@ -32,11 +34,20 @@ public class Map {
 					case 27:
 						map[r][c] = new Tile();
 						break;
-					default:
-						map[r][c] = generateRandomTile();
-						break;
+
 				}
 
+				switch (c) {
+					case 0:
+						map[r][c] = new Tile();
+						break;
+					case 25:
+						map[r][c] = new Tile();
+						break;
+					case 49:
+						map[r][c] = new Tile();
+						break;
+				}
 			}
 		}
 	}
