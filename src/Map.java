@@ -4,19 +4,6 @@ public class Map {
 	private int size, spacer;
 	private int pixelWidth, pixelHeight;
 
-	// default map for 1920x1080 screen
-	public Map() {
-		size = 35;
-		spacer = 1;
-		map = new Tile[28][53];
-		for (int r = 0; r < map.length; r++) {
-			for (int c = 0; c < map[r].length; c++) {
-				map[r][c] = generateRandomTile();
-			}
-		}
-	}
-
-	// map adjusts to frame size
 	public Map(int frameW, int frameH) {
 		int w = frameW / 44;
 		int h = frameH / 28;
@@ -26,51 +13,11 @@ public class Map {
 
 		for (int r = 0; r < map.length; r++) {
 			for (int c = 0; c < map[r].length; c++) {
-				map[r][c] = generateRandomTile();
-
-				switch (r) {
-					case 0:
-						map[r][c] = new Tile();
-						break;
-					case 27:
-						map[r][c] = new Tile();
-						break;
-
-				}
-
-				switch (c) {
-					case 0:
-						map[r][c] = new Tile();
-						break;
-					case 22:
-						map[r][c] = new Tile();
-						break;
-					case 43:
-						map[r][c] = new Tile();
-						break;
-				}
+				map[r][c] = new Tile();
 			}
 		}
 		this.pixelWidth = (size + spacer) * map[0].length;
 		this.pixelHeight = (size + spacer) * map.length;
-	}
-
-	public Tile generateRandomTile() {
-		int rand = (int) (Math.random() * 100);
-		int type;
-		// 0 = ground, 1 = moss, 2 = grass, 3 = rock, 4 = water
-		if (rand < 40)
-			type = 0;
-		else if (rand < 60)
-			type = 1;
-		else if (rand < 80)
-			type = 2;
-		else if (rand < 90)
-			type = 3;
-		else
-			type = 4;
-		double chance = 0.0;
-		return new Tile(type, chance);
 	}
 
 	public Tile[][] getMap() {

@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -75,27 +76,11 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	}
 
 	public void paintMap(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+
 		for (int r = 0; r < m.getMap().length; r++) {
 			for (int c = 0; c < m.getMap()[0].length; c++) {
-				// set color based on tile type
-				// 0 = ground, 1 = moss, 2 = grass, 3 = rock, 4 = water
-				switch (m.getMap()[r][c].getType()) {
-					case 0:
-						g.setColor(new Color(80, 120, 60));
-						break;
-					case 1:
-						g.setColor(new Color(120, 150, 100));
-						break;
-					case 2:
-						g.setColor(new Color(86, 125, 70));
-						break;
-					case 3:
-						g.setColor(new Color(30, 30, 30));
-						break;
-					case 4:
-						g.setColor(new Color(170, 220, 220));
-				}
-				g.fillRect(c * (tileSize + tileSpacer), r * (tileSize + tileSpacer), tileSize, tileSize);
+				g2.drawImage(m.getMap()[r][c].getImg(), c * (tileSize + tileSpacer), r * (tileSize + tileSpacer), null);
 			}
 		}
 	}
