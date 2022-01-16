@@ -3,10 +3,25 @@ public class Map {
 	private Tile[][] map;
 	private int size, spacer;
 
+	// default map for 1920x1080 screen
 	public Map() {
 		size = 35;
 		spacer = 1;
 		map = new Tile[53][28];
+		for (int r = 0; r < map.length; r++) {
+			for (int c = 0; c < map[r].length; c++) {
+				map[r][c] = generateRandomTile();
+			}
+		}
+	}
+
+	// map adjusts to frame size
+	public Map(int frameW, int frameH) {
+		int width = frameW / 50;
+		int height = frameH / 28;
+		size = Math.min(width, height) - 2;
+		spacer = 1;
+		map = new Tile[50][28];
 		for (int r = 0; r < map.length; r++) {
 			for (int c = 0; c < map[r].length; c++) {
 				map[r][c] = generateRandomTile();
