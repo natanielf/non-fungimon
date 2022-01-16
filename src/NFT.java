@@ -132,8 +132,7 @@ public class NFT {
 	}
 
 	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(img, x, y, null);
+		g.drawImage(img, x, y, null);
 	}
 
 }

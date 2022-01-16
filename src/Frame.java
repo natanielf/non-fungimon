@@ -30,7 +30,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		paintBackground(g);
 		paintMap(g);
 		paintPlayer(g);
-		paintNFT(g);
 		panel.paint(g);
 	}
 
@@ -76,11 +75,9 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	}
 
 	public void paintMap(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-
 		for (int r = 0; r < m.getMap().length; r++) {
 			for (int c = 0; c < m.getMap()[0].length; c++) {
-				g2.drawImage(m.getMap()[r][c].getImg(), c * (tileSize + tileSpacer), r * (tileSize + tileSpacer), null);
+				g.drawImage(m.getMap()[r][c].getImg(), c * (tileSize + tileSpacer), r * (tileSize + tileSpacer), null);
 			}
 		}
 	}
@@ -90,16 +87,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		int playerY = p.getY() * (tileSize + tileSpacer) + tileSpacer;
 		g.setColor(Color.orange);
 		g.fillOval(playerX, playerY, tileSize - 5, tileSize - 5);
-	}
-
-	public void paintNFT(Graphics g) {
-		for (NFT myNFT : p.getMyNFTs()) {
-			if (myNFT != null) {
-				myNFT.setX(p.getX() * (tileSize + tileSpacer) + tileSpacer);
-				myNFT.setY(p.getY() * (tileSize + tileSpacer) + tileSpacer);
-				myNFT.paint(g);
-			}
-		}
 	}
 
 	@Override
