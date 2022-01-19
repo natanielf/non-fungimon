@@ -5,7 +5,6 @@ import java.net.URL;
 public class Tile {
 
 	// 0 = ground, 1 = moss, 2 = grass, 3 = rock, 4 = water
-
 	private Image img;
 	private boolean isSolid;
 	private double chance;

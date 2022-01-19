@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -34,6 +33,12 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	}
 
 	public Frame() {
+		String name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:");
+		if (name == null || name.trim().equals(""))
+			name = "Player 1";
+		else
+			name = name.trim();
+
 		f = new JFrame("Non-Fungimon");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -42,16 +47,12 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		f.setIconImage(icon.getImage());
 		f.add(this);
 		f.addKeyListener(this);
-		t = new Timer(16, this);
-		t.start();
-
 		f.setVisible(true);
 
-		String name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:");
-		if (name == null)
-			name = "Player 1";
-
 		init(name);
+
+		t = new Timer(16, this);
+		t.start();
 	}
 
 	public static void main(String[] arg) {
@@ -93,29 +94,30 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	public void keyPressed(KeyEvent e) {
 		// key codes: 38 = up, 39 = right, 40 = down, 37 = left
 		switch (e.getKeyCode()) {
-			case 38:
-				p.up(m);
-				break;
-			case 39:
-				p.right(m.getMap()[0].length - 1, m);
-				break;
-			case 40:
-				p.down(m.getMap().length - 1, m);
-				break;
-			case 37:
-				p.left(m);
-				break;
-			case 17:
-				ctrlKeyPressed = true;
-				break;
-			case 32:
-				panel.incrementProgress();
+		case 38:
+			p.up(m);
+			break;
+		case 39:
+			p.right(m.getMap()[0].length - 1, m);
+			break;
+		case 40:
+			p.down(m.getMap().length - 1, m);
+			break;
+		case 37:
+			p.left(m);
+			break;
+		case 17:
+			ctrlKeyPressed = true;
+			break;
+		case 32:
+			panel.incrementProgress();
+			break;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// quit with CTRL+Q activation
+		// quit game with CTRL+Q activation
 		if (e.getKeyCode() == 17)
 			ctrlKeyPressed = false;
 

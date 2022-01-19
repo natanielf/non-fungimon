@@ -5,11 +5,11 @@ public class Map {
 	private int pixelWidth, pixelHeight;
 
 	public Map(int frameW, int frameH) {
-		int w = frameW / 44;
+		int w = frameW / 40;
 		int h = frameH / 28;
 		size = Math.min(w, h) - 2;
 		spacer = 1;
-		map = new Tile[28][44];
+		map = new Tile[28][40];
 
 		for (int r = 0; r < map.length; r++) {
 			for (int c = 0; c < map[r].length; c++) {
