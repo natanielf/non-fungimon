@@ -6,46 +6,54 @@ import java.net.URL;
 
 public class NFT {
 
-	private String name;
-	private int rarity, level, health;
-	private boolean evo, isPoisoned, isStunned;
+	private String name, status;
+	private int rarity, lvl, max, hp, type, evo;
 	private Image img;
-	private int x, y;
 
-	public NFT(String name, int rarity, int level, int health, boolean evo, boolean isPoisoned, boolean isStunned,
-			Image img, int x, int y) {
+	public NFT(String name, String status, int rarity, int lvl, int max, int hp, int type, int evo, Image img) {
 		this.name = name;
+		this.status = status;
 		this.rarity = rarity;
-		this.level = level;
-		this.health = health;
-		this.evo = evo;
-		this.isPoisoned = isPoisoned;
-		this.isStunned = isStunned;
+		this.lvl = lvl;
+		this.max = max;
+		this.hp = hp;
+		this.type = type;
 		this.img = img;
-		this.x = x;
-		this.y = y;
+		
 	}
-
-	// default NFT that every player starts with
+	
 	public NFT() {
-		this.name = "The Grey Duck";
-		this.rarity = 1;
-		this.level = 1;
-		this.health = 10;
-		this.evo = false;
-		this.isPoisoned = false;
-		this.isStunned = false;
-		this.img = getImage("./img/duck1.png");
-		this.x = 0;
-		this.y = 0;
+		name = "The Grey Duck";
+		status = "";
+		rarity = 1;
+		lvl = 1;
+		hp = 10;
+		type = 0;
+		evo = 0;
+		img = getImage("./img/duck1.png");
 	}
-
+	
+	public void hit (Ability a) {
+		status = a.getEffect();
+		
+	}
+	
+	
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public int getRarity() {
@@ -56,44 +64,28 @@ public class NFT {
 		this.rarity = rarity;
 	}
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
-	public int getHealth() {
-		return health;
+	public int getHp() {
+		return hp;
 	}
 
-	public void setHealth(int health) {
-		this.health = health;
+	public void setHp(int hp) {
+		this.hp = hp;
 	}
-
-	public boolean isEvo() {
-		return evo;
+	
+	public int getType() {
+		return type;
 	}
-
-	public void setEvo(boolean evo) {
-		this.evo = evo;
-	}
-
-	public boolean isPoisoned() {
-		return isPoisoned;
-	}
-
-	public void setPoisoned(boolean isPoisoned) {
-		this.isPoisoned = isPoisoned;
-	}
-
-	public boolean isStunned() {
-		return isStunned;
-	}
-
-	public void setStunned(boolean isStunned) {
-		this.isStunned = isStunned;
+	
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public Image getImg() {
@@ -102,22 +94,6 @@ public class NFT {
 
 	public void setImg(Image img) {
 		this.img = img;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
 	}
 
 	private Image getImage(String path) {
@@ -131,8 +107,8 @@ public class NFT {
 		return tempImage;
 	}
 
-	public void paint(Graphics g) {
-		g.drawImage(img, x, y, null);
-	}
+//	public void paint(Graphics g) {
+//		g.drawImage(img, x, y, null);
+//	}
 
 }
