@@ -36,6 +36,7 @@ public class Panel {
 		return new String[] {
 				greeting,
 				welcome,
+				"Use the arrow keys to move.",
 				"Try exploring the map!"
 				};
 	}
