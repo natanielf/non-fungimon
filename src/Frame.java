@@ -33,11 +33,9 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	}
 
 	public Frame() {
-		String name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:");
-		if (name == null || name.trim().equals(""))
+		String name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:").trim();
+		if (name == null || name.equals(""))
 			name = "Player 1";
-		else
-			name = name.trim();
 
 		f = new JFrame("Non-Fungimon");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

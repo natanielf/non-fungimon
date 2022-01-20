@@ -18,7 +18,7 @@ public class Panel {
 		this.height = frameH - (frameH / 28);
 		this.instructions = populateInstructions();
 		this.progress = 0;
-		this.font = new Font("SANS_SERIF", Font.BOLD, 20);
+		this.font = new Font("SANS_SERIF", Font.BOLD, 30);
 	}
 
 	public void paint(Graphics g) {
@@ -33,7 +33,8 @@ public class Panel {
 	public String[] populateInstructions() {
 		String greeting = "Hello, " + name + "!";
 		String welcome = "Welcome to Non-Fungimon!";
-		return new String[] { greeting,
+		return new String[] {
+				greeting,
 				welcome,
 				"Try exploring the map!"
 				};
