@@ -20,19 +20,23 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	private Panel panel;
 
 	private boolean ctrlKeyPressed;
+	private boolean readyToPaint;
 	private JFrame f;
 	private Timer t;
 	private ImageIcon icon;
 
 	public void paint(Graphics g) {
-		super.paintComponent(g);
-		paintBackground(g);
-		paintMap(g);
-		paintPlayer(g);
-		panel.paint(g);
+		if (readyToPaint) {
+			super.paintComponent(g);
+			paintBackground(g);
+			paintMap(g);
+			paintPlayer(g);
+			panel.paint(g);
+		}
 	}
 
 	public Frame() {
+		this.readyToPaint = false;
 		String name = JOptionPane.showInputDialog(f, "Welcome to Non-Fungimon! Enter your player name below:");
 		if (name == null || name.trim().equals(""))
 			name = "Player 1";
@@ -68,6 +72,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		tileSize = m.getSize();
 		tileSpacer = m.getSpacer();
 		panel = new Panel(name, frameWidth, frameHeight, m.getPixelWidth());
+		readyToPaint = true;
 	}
 
 	public void paintBackground(Graphics g) {

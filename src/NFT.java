@@ -36,7 +36,7 @@ public class NFT {
 	public void hit (Ability a) {
 		status = a.getEffect();
 		if(this.type == 1) {
-			null;
+
 		}
 	}
 	
