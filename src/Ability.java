@@ -1,15 +1,14 @@
 
 public class Ability {
 	
-	private String name, effect;
-	private int dmg, type;
+	private String name, type, effect;
+	private int dmg;
 	
 	public Ability() {
 		name = "hit";
-		effect = "";
-		
+		type = "none";
+		effect = "none";
 		dmg = 5;
-		type = 0;
 	}
 
 	public String getName() {
@@ -18,6 +17,14 @@ public class Ability {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getEffect() {
@@ -34,14 +41,6 @@ public class Ability {
 
 	public void setDmg(int dmg) {
 		this.dmg = dmg;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
 	}
 	
 }
