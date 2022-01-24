@@ -6,5 +6,13 @@ public class Fight {
 
 	private int width, height;
 	private Font font;
+	private Player player, enemy;
 
+	
+	
+	
+	
+	
+	
+	
 }
