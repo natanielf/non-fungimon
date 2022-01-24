@@ -6,18 +6,18 @@ import java.net.URL;
 
 public class NFT {
 
-	private String name, status;
-	private int rarity, lvl, max, hp, type, evo;
+	private String name, type, status;
+	private int rarity, lvl, max, hp, evo;
 	private Image img;
 
-	public NFT(String name, String status, int rarity, int lvl, int max, int hp, int type, int evo, Image img) {
+	public NFT(String name, String type, String status, int rarity, int lvl, int max, int hp, int evo, Image img) {
 		this.name = name;
+		this.type = type;
 		this.status = status;
 		this.rarity = rarity;
 		this.lvl = lvl;
 		this.max = max;
 		this.hp = hp;
-		this.type = type;
 		this.img = img;
 		
 	}
@@ -28,19 +28,40 @@ public class NFT {
 		rarity = 1;
 		lvl = 1;
 		hp = 10;
-		type = 0;
+		type = "none";
 		evo = 0;
 		img = getImage("./img/duck1.png");
 	}
 	
 	public void hit (Ability a) {
-		status = a.getEffect();
-		if(this.type == 1) {
-
-		}
+		int dmg;
+		
+		if(status == "immune")
+			status = "";
+		else
+			status = a.getEffect();
+		
+		if(type == "rock" && a.getType() == "paper")
+			dmg = a.getDmg() + a.getDmg()/5;
+		else if(type == "rock" && a.getType() == "scissors")
+			dmg = a.getDmg() - a.getDmg()/5;
+		else if(type == "paper" && a.getType() == "scissors")
+			dmg = a.getDmg() + a.getDmg()/5;
+		else if(type == "paper" && a.getType() == "rock")
+			dmg = a.getDmg() - a.getDmg()/5;
+		else if(type == "scissor" && a.getType() == "rock")
+			dmg = a.getDmg() + a.getDmg()/5;
+		else if(type == "scissor" && a.getType() == "paper")
+			dmg = a.getDmg() - a.getDmg()/5;
+		else
+			dmg = a.getDmg();
+		
+		if(hp > dmg)
+			hp -= dmg;
+		else
+			hp = 0;
+			//fainted();
 	}
-	
-	
 	
 	public String getName() {
 		return name;
@@ -48,6 +69,14 @@ public class NFT {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	public String getStatus() {
@@ -80,14 +109,6 @@ public class NFT {
 
 	public void setHp(int hp) {
 		this.hp = hp;
-	}
-	
-	public int getType() {
-		return type;
-	}
-	
-	public void setType(int type) {
-		this.type = type;
 	}
 
 	public Image getImg() {
