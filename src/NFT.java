@@ -8,9 +8,10 @@ public class NFT {
 
 	private String name, type, status;
 	private int rarity, lvl, max, hp, evo;
+	private boolean fainted;
 	private Image img;
 
-	public NFT(String name, String type, String status, int rarity, int lvl, int max, int hp, int evo, Image img) {
+	public NFT(String name, String type, String status, int rarity, int lvl, int max, int hp, int evo, boolean fainted, Image img) {
 		this.name = name;
 		this.type = type;
 		this.status = status;
@@ -18,6 +19,7 @@ public class NFT {
 		this.lvl = lvl;
 		this.max = max;
 		this.hp = hp;
+		this.fainted = fainted;
 		this.img = img;
 		
 	}
@@ -60,7 +62,7 @@ public class NFT {
 			hp -= dmg;
 		else
 			hp = 0;
-			//fainted();
+			//faint();
 	}
 	
 	public String getName() {
@@ -109,6 +111,14 @@ public class NFT {
 
 	public void setHp(int hp) {
 		this.hp = hp;
+	}
+	
+	public boolean getFainted() {
+		return fainted;
+	}
+	
+	public void setFainted(boolean fainted) {
+		this.fainted = fainted;
 	}
 
 	public Image getImg() {
