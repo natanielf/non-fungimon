@@ -19,8 +19,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 	private int tileSize, tileSpacer;
 	private Panel panel;
 
-	private boolean ctrlKeyPressed;
-	private boolean readyToPaint;
+	private boolean ctrlKeyPressed, readyToPaint;
 	private JFrame f;
 	private Timer t;
 	private ImageIcon icon;
@@ -30,7 +29,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 			super.paintComponent(g);
 			paintBackground(g);
 			paintMap(g);
-			paintPlayer(g);
+			p.paint(g, p.getX(), p.getY(), tileSize, tileSpacer);
 			panel.paint(g);
 		}
 	}
@@ -67,10 +66,10 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		int frameWidth = (int) f.getSize().getWidth();
 		int frameHeight = (int) f.getSize().getHeight();
 		ctrlKeyPressed = false;
-		p = new Player();
 		m = new Map(frameWidth, frameHeight);
 		tileSize = m.getSize();
 		tileSpacer = m.getSpacer();
+		p = new Player(tileSize - 5);
 		panel = new Panel(name, frameWidth, frameHeight, m.getPixelWidth());
 		readyToPaint = true;
 	}
@@ -88,16 +87,10 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		}
 	}
 
-	public void paintPlayer(Graphics g) {
-		int playerX = p.getX() * (tileSize + tileSpacer) + tileSpacer;
-		int playerY = p.getY() * (tileSize + tileSpacer) + tileSpacer;
-		g.setColor(Color.orange);
-		g.fillOval(playerX, playerY, tileSize - 5, tileSize - 5);
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// key codes: 38 = up, 39 = right, 40 = down, 37 = left
+		// 32 = space, 90 = Z, 88 = X, 67 = C, 86 = V
 		switch (e.getKeyCode()) {
 			case 38:
 				p.up(m);
@@ -116,6 +109,18 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 				break;
 			case 32:
 				panel.incrementProgress();
+				break;
+			case 90:
+				System.out.println("Z");
+				break;
+			case 88:
+				System.out.println("X");
+				break;
+			case 67:
+				System.out.println("C");
+				break;
+			case 86:
+				System.out.println("V");
 				break;
 		}
 	}

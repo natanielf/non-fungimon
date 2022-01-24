@@ -1,40 +1,53 @@
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Player {
 
 	private NFT[] myNFTs;
 	private Item[] myItems;
 	private int x, y; // location on the grid
 	private int size; // size of the player
+	private boolean isLocked; // lock/unlock movement
 
-	public Player() {
-		this.myNFTs = new NFT[5];
+	public Player(int size) {
+		this.myNFTs = new NFT[6];
 		this.myNFTs[0] = new NFT();
 		this.myItems = new Item[10];
-		x = 0;
-		y = 0;
+		this.x = 0;
+		this.y = 0;
+		this.size = size;
+		this.isLocked = false;
 	}
 
 	public void up(Map m) {
-		if (y > 0 && !m.getMap()[this.y - 1][this.x].getIsSolid())
+		if (y > 0 && !m.getMap()[this.y - 1][this.x].getIsSolid() && !isLocked)
 			y--;
 	}
 
 	public void right(int max, Map m) {
-		if (x < max && !m.getMap()[this.y][this.x + 1].getIsSolid())
+		if (x < max && !m.getMap()[this.y][this.x + 1].getIsSolid() && !isLocked)
 			x++;
 	}
 
 	public void down(int max, Map m) {
-		if (y < max && !m.getMap()[this.y + 1][this.x].getIsSolid())
+		if (y < max && !m.getMap()[this.y + 1][this.x].getIsSolid() && !isLocked)
 			y++;
 	}
 
 	public void left(Map m) {
-		if (x > 0 && !m.getMap()[this.y][this.x - 1].getIsSolid())
+		if (x > 0 && !m.getMap()[this.y][this.x - 1].getIsSolid() && !isLocked)
 			x--;
 	}
 
 	public void printLocation() {
 		System.out.println(" X:Y - " + x + ":" + y);
+	}
+
+	public void paint(Graphics g, int x, int y, int tileSize, int tileSpacer) {
+		int playerX = x * (tileSize + tileSpacer) + tileSpacer;
+		int playerY = y * (tileSize + tileSpacer) + tileSpacer;
+		g.setColor(Color.orange);
+		g.fillOval(playerX, playerY, tileSize - 5, tileSize - 5);
 	}
 
 	public NFT[] getMyNFTs() {
@@ -75,6 +88,14 @@ public class Player {
 
 	public void setSize(int size) {
 		this.size = size;
+	}
+
+	public boolean isLocked() {
+		return isLocked;
+	}
+
+	public void setLocked(boolean isLocked) {
+		this.isLocked = isLocked;
 	}
 
 }
