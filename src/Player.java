@@ -3,13 +3,15 @@ import java.awt.Graphics;
 
 public class Player {
 
+	private String name;
 	private NFT[] myNFTs;
 	private Item[] myItems;
 	private int x, y; // location on the grid
 	private int size; // size of the player
 	private boolean isLocked; // lock/unlock movement
 
-	public Player(int size) {
+	public Player(String name, int size) {
+		this.name = name;
 		this.myNFTs = new NFT[6];
 		this.myNFTs[0] = new NFT();
 		this.myItems = new Item[10];
@@ -48,6 +50,14 @@ public class Player {
 		int playerY = y * (tileSize + tileSpacer) + tileSpacer;
 		g.setColor(Color.orange);
 		g.fillOval(playerX, playerY, tileSize - 5, tileSize - 5);
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public NFT[] getMyNFTs() {
