@@ -67,5 +67,5 @@ public class Map {
 	public void setPixelHeight(int pixelHeight) {
 		this.pixelHeight = pixelHeight;
 	}
-
+	
 }

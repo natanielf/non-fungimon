@@ -79,6 +79,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		ctrlKeyPressed = false;
 		isFightMode = false;
 		readyToPaint = true;
+		startFight();
 	}
 
 	public void startFight() {
