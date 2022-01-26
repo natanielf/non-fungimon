@@ -2,4 +2,4 @@
 
 ### _A turn-based NFT combat simulator!_
 
-Created by @natanielf and @K-P-23
+Created by [@natanielf](https://github.com/natanielf) and [@K-P-23](https://github.com/K-P-23)
