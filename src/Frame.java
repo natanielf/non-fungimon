@@ -52,7 +52,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		f.setMinimumSize(new Dimension(1280, 720));
-		icon = new ImageIcon(getClass().getResource("./img/duck1.png"));
+		icon = new ImageIcon(getClass().getResource("./img/reddy.png"));
 		f.setIconImage(icon.getImage());
 		f.add(this);
 		f.addKeyListener(this);
