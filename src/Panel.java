@@ -15,8 +15,8 @@ public class Panel {
 		this.name = name;
 		this.x = mapW + 2;
 		this.y = 0;
-		this.width = frameW - mapW - (frameW / 100);
-		this.height = frameH - (frameH / 28);
+		this.width = frameW - mapW;
+		this.height = frameH;
 		this.instructions = populateInstructions();
 		this.progress = 0;
 		this.isFightMode = false;
@@ -30,7 +30,7 @@ public class Panel {
 		g.setFont(font);
 		if (!isFightMode) {
 			g.drawString(instructions[progress], x + 8, y + 35);
-			g.drawString("Press space to continue.", x + 8, height - 20);
+			g.drawString("Press space to continue.", x + 8, height - (font.getSize() * 2));
 		} else {
 			paintFightInstructions(g);
 		}
