@@ -104,36 +104,36 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		// key codes: 38 = up, 39 = right, 40 = down, 37 = left
 		// 32 = space, 90 = Z, 88 = X, 67 = C, 86 = V
 		switch (e.getKeyCode()) {
-		case 38:
-			p.up(m);
-			break;
-		case 39:
-			p.right(m.getMap()[0].length - 1, m);
-			break;
-		case 40:
-			p.down(m.getMap().length - 1, m);
-			break;
-		case 37:
-			p.left(m);
-			break;
-		case 17:
-			ctrlKeyPressed = true;
-			break;
-		case 32:
-			panel.incrementProgress();
-			break;
-		case 90:
-			System.out.println("Z");
-			break;
-		case 88:
-			System.out.println("X");
-			break;
-		case 67:
-			System.out.println("C");
-			break;
-		case 86:
-			System.out.println("V");
-			break;
+			case 38:
+				p.up(m);
+				break;
+			case 39:
+				p.right(m.getMap()[0].length - 1, m);
+				break;
+			case 40:
+				p.down(m.getMap().length - 1, m);
+				break;
+			case 37:
+				p.left(m);
+				break;
+			case 17:
+				ctrlKeyPressed = true;
+				break;
+			case 32:
+				panel.incrementProgress();
+				break;
+			case 90:
+				System.out.println("Z");
+				break;
+			case 88:
+				System.out.println("X");
+				break;
+			case 67:
+				System.out.println("C");
+				break;
+			case 86:
+				System.out.println("V");
+				break;
 		}
 	}
 

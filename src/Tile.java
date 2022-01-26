@@ -7,12 +7,27 @@ public class Tile {
 	// 0 = ground, 1 = moss, 2 = grass, 3 = rock, 4 = water
 	private Image img;
 	private boolean isSolid;
-	private double chance;
+	private int chance;
 
 	public Tile() {
 		this.img = getImage("./img/grass.png");
 		this.isSolid = false;
 		this.chance = 0;
+	}
+
+	public Tile(int type) {
+		switch (type) {
+			case 0:
+				this.img = getImage("./img/grass.png");
+				this.isSolid = false;
+				this.chance = (int) Math.random() * 100;
+				break;
+			case 1:
+				this.img = getImage("./img/rock.png");
+				this.isSolid = true;
+				this.chance = 0;
+				break;
+		}
 	}
 
 	public Image getImg() {
@@ -31,11 +46,11 @@ public class Tile {
 		this.isSolid = isSolid;
 	}
 
-	public double getChance() {
+	public int getChance() {
 		return chance;
 	}
 
-	public void setChance(double chance) {
+	public void setChance(int chance) {
 		this.chance = chance;
 	}
 
