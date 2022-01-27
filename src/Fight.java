@@ -28,6 +28,8 @@ public class Fight {
 	
 	
 	
+	
+	
 	public void paint(Graphics g, int width, int height) {
 		g.setColor(Color.white);
 		g.setFont(font);
