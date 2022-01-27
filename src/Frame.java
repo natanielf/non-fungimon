@@ -32,7 +32,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 			paintMap(g);
 			p.paint(g, p.getX(), p.getY(), tileSize, tileSpacer);
 			panel.setFightMode(isFightMode);
-			panel.paint(g, fight.panelTxt);
+			panel.paint(g, fight.panelTxt());
 			if (fight != null && panel.isFightMode()) {
 				fight.paint(g, (int) f.getSize().getWidth() - panel.getWidth() - 15,
 						(int) f.getSize().getHeight() - 35);
