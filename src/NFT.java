@@ -1,5 +1,3 @@
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -11,7 +9,8 @@ public class NFT {
 	private boolean fainted;
 	private Image img;
 
-	public NFT(String name, String type, String status, int rarity, int lvl, int max, int hp, int evo, boolean fainted, Image img) {
+	public NFT(String name, String type, String status, int rarity, int lvl, int max, int hp, int evo, boolean fainted,
+			Image img) {
 		this.name = name;
 		this.type = type;
 		this.status = status;
@@ -21,9 +20,9 @@ public class NFT {
 		this.hp = hp;
 		this.fainted = fainted;
 		this.img = img;
-		
+
 	}
-	
+
 	public NFT() {
 		name = "The Grey Duck";
 		status = "";
@@ -34,37 +33,37 @@ public class NFT {
 		evo = 0;
 		img = getImage("./img/duck1.png");
 	}
-	
-	public void hit (Ability a) {
+
+	public void hit(Ability a) {
 		int dmg;
-		
-		if(status == "immune")
+
+		if (status == "immune")
 			status = "";
 		else
 			status = a.getEffect();
-		
-		if(type == "rock" && a.getType() == "paper")
-			dmg = a.getDmg() + a.getDmg()/5;
-		else if(type == "rock" && a.getType() == "scissors")
-			dmg = a.getDmg() - a.getDmg()/5;
-		else if(type == "paper" && a.getType() == "scissors")
-			dmg = a.getDmg() + a.getDmg()/5;
-		else if(type == "paper" && a.getType() == "rock")
-			dmg = a.getDmg() - a.getDmg()/5;
-		else if(type == "scissor" && a.getType() == "rock")
-			dmg = a.getDmg() + a.getDmg()/5;
-		else if(type == "scissor" && a.getType() == "paper")
-			dmg = a.getDmg() - a.getDmg()/5;
+
+		if (type == "rock" && a.getType() == "paper")
+			dmg = a.getDmg() + a.getDmg() / 5;
+		else if (type == "rock" && a.getType() == "scissors")
+			dmg = a.getDmg() - a.getDmg() / 5;
+		else if (type == "paper" && a.getType() == "scissors")
+			dmg = a.getDmg() + a.getDmg() / 5;
+		else if (type == "paper" && a.getType() == "rock")
+			dmg = a.getDmg() - a.getDmg() / 5;
+		else if (type == "scissor" && a.getType() == "rock")
+			dmg = a.getDmg() + a.getDmg() / 5;
+		else if (type == "scissor" && a.getType() == "paper")
+			dmg = a.getDmg() - a.getDmg() / 5;
 		else
 			dmg = a.getDmg();
-		
-		if(hp > dmg)
+
+		if (hp > dmg)
 			hp -= dmg;
 		else
 			hp = 0;
-			//faint();
+		// faint();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -72,7 +71,7 @@ public class NFT {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
@@ -80,11 +79,11 @@ public class NFT {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
@@ -112,11 +111,11 @@ public class NFT {
 	public void setHp(int hp) {
 		this.hp = hp;
 	}
-	
+
 	public boolean getFainted() {
 		return fainted;
 	}
-	
+
 	public void setFainted(boolean fainted) {
 		this.fainted = fainted;
 	}
@@ -139,9 +138,5 @@ public class NFT {
 		}
 		return tempImage;
 	}
-
-//	public void paint(Graphics g) {
-//		g.drawImage(img, x, y, null);
-//	}
 
 }
