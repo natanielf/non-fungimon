@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class Panel {
 
@@ -23,7 +24,7 @@ public class Panel {
 		this.font = new Font("SANS_SERIF", Font.BOLD, 30);
 	}
 
-	public void paint(Graphics g) {
+	public void paint(Graphics g, ArrayList<String> panelTxt) {
 		g.setColor(Color.lightGray);
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.black);
@@ -32,7 +33,7 @@ public class Panel {
 			g.drawString(instructions[progress], x + 8, y + 35);
 			g.drawString("Press space to continue.", x + 8, height - (font.getSize() * 2));
 		} else {
-			paintFightInstructions(g);
+			paintFightInstructions(g, panelTxt);
 		}
 	}
 
@@ -52,14 +53,13 @@ public class Panel {
 			progress++;
 	}
 
-	private void paintFightInstructions(Graphics g) {
+	private void paintFightInstructions(Graphics g, ArrayList<String> panelTxt) {
 		g.drawString("You're in a fight!", x + 8, y + 30);
 		g.drawString("Decide your next move:", x + 8, y + 60);
 		g.setFont(new Font("SANS_SERIF", Font.BOLD, 25));
-		g.drawString("Z - Fight", x + 8, y + 100);
-		g.drawString("X - Cloud", x + 8, y + 130);
-		g.drawString("C - Blockchain", x + 8, y + 160);
-		g.drawString("V - Log out", x + 8, y + 190);
+		for (int i = 0; i < panelTxt.size(); i++) {
+			g.drawString(panelTxt.get(i), x + 8, y + 100 + (i * 20));
+		}
 	}
 
 	public String getName() {
