@@ -107,5 +107,9 @@ public class Player {
 	public void setLocked(boolean isLocked) {
 		this.isLocked = isLocked;
 	}
+	
+	public NFT NFT(int n) {
+		return myNFTs[n];
+	}
 
 }

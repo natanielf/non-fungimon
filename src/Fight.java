@@ -1,24 +1,29 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class Fight {
 
 	private Font font;
+	private ArrayList<String> panelTxt;
 	private Player player, enemy;
-	private String strZ, strA, strB, strC, strD, strE, strF;
+	private NFT pNFT, eNFT;
 	
 
 	public Fight(Player a, Player b) {
 		font = new Font("SANS_SERIF", Font.BOLD, 45);
 		player = a;
 		enemy = b;
-		fightStr(b.getName()+" challenges you!", "", "", "", "", "", "");
+		panelTxt = new ArrayList<>();
+		panelTxt.add(b.getName()+" challenges you!");
 		
 	}
 	
 	public void pick() {
-		
+		String[] NFTs = { "Pick you next NFT!", player.NFT(0).getName(), player.NFT(1).getName(),
+				player.NFT(2).getName(), player.NFT(3).getName(), player.NFT(4).getName(), player.NFT(5).getName() };
+		panelTxt(NFTs);
 	}
 	
 	
@@ -31,19 +36,15 @@ public class Fight {
 		g.drawString("Get ready, " + player.getName() + "! It's time to fight!", 10, 50);
 	}
 	
-	public void fightStr(String z, String a, String b, String c, String d, String e, String f) {
-		strZ = z;
-		strA = a;
-		strB = b;
-		strC = c;
-		strD = d;
-		strE = e;
-		strF = f;
+	public void panelTxt(String[] str) {
+		for(int i=0; i<panelTxt.size(); i++)
+			panelTxt.remove(i);
+		for(int i=0; i<str.length; i++)
+			panelTxt.add(str[i]);
 	}
 	
-	public String[] fightStr() {
-		String[] strArr = {strZ, strA, strB, strC, strD, strE, strF};
-		return strArr;
+	public ArrayList panelTxt() {
+		return panelTxt;
 	}
 
 }
