@@ -51,7 +51,7 @@ public class Player {
 		g.setColor(Color.orange);
 		g.fillOval(playerX, playerY, tileSize - 5, tileSize - 5);
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -107,9 +107,13 @@ public class Player {
 	public void setLocked(boolean isLocked) {
 		this.isLocked = isLocked;
 	}
-	
+
 	public NFT NFT(int n) {
 		return myNFTs[n];
+	}
+
+	public boolean foundNFT(Map m) {
+		return m.getMap()[x][y].getChance() >= 70;
 	}
 
 }
