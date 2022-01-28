@@ -77,15 +77,10 @@ public class Frame extends JPanel implements KeyListener, ActionListener {
 		p = new Player(name, tileSize - 5);
 		panel = new Panel(name, frameWidth, frameHeight, m.getPixelWidth());
 		e = new Player("Evil Bob", tileSize - 5);
-		startFight();
+		fight = new Fight(p, e);
 		this.isFightMode = false;
 		ctrlKeyPressed = false;
 		readyToPaint = true;
-	}
-
-	public void startFight() {
-		fight = new Fight(p, e);
-		this.isFightMode = true;
 	}
 
 	public void paintBackground(Graphics g) {
